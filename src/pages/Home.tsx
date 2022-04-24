@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useCallback, useEffect } from 'react';
+import { FunctionComponent, useState, useCallback, useEffect, ChangeEvent } from 'react';
 
 import { useWebsocket } from '../api/socket';
 import { convertData } from '../utils';
@@ -7,6 +7,7 @@ import { PipesWrapper } from '../components/PipesWrapper';
 
 const Home: FunctionComponent = () => {
   const [pipes, setPipes] = useState<Pipes>([]);
+  const [level, setLevel] = useState('1');
   const { ws } = useWebsocket();
 
   const getData = useCallback((data: string) => {
@@ -20,10 +21,10 @@ const Home: FunctionComponent = () => {
     }
   }, []);
 
-  const handleStartClick = useCallback(() => {
-    ws.send(`${COMMANDS.NEW} 1`);
+  const handleStartClick = () => {
+    ws.send(`${COMMANDS.NEW} ${level}`);
     ws.send(COMMANDS.MAP);
-  }, [ws]);
+  };
 
   useEffect(() => {
     ws.onopen = () => {
@@ -37,28 +38,36 @@ const Home: FunctionComponent = () => {
     return () => {
       ws.close();
     };
-  }, [ws, getData, handleStartClick]);
+    // eslint-disable-next-line
+  }, [ws, getData]);
 
-  const handleHelpClick = () => {
-    ws.send(COMMANDS.HELP);
+  const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setLevel(e.target.value);
   };
 
   const handleVerifyClick = () => {
     ws.send(COMMANDS.VERIFY);
   };
 
-  const handleRotate = useCallback((x: number, y: number) => {
+  const handleRotate = (x: number, y: number) => {
     ws.send(`${COMMANDS.ROTATE} ${x} ${y}`);
     ws.send(COMMANDS.MAP);
-  }, [ws]);
+  };
 
   return (
     <div>
       <h1>Pipes Puzzle</h1>
-      <PipesWrapper onRotate={handleRotate} data={pipes} />
       <button onClick={handleStartClick}>Start New Game</button>
-      <button onClick={handleHelpClick}>Help</button>
+      <select name='level' value={level} onChange={handleLevelChange}>
+        <option value={1}>Level 1</option>
+        <option value={2}>Level 2</option>
+        <option value={3}>Level 3</option>
+        <option value={4}>Level 4</option>
+        <option value={5}>Level 5</option>
+        <option value={6}>Level 6</option>
+      </select>
       <button onClick={handleVerifyClick}>Verify</button>
+      <PipesWrapper onRotate={handleRotate} data={pipes} />
     </div>
   );
 }
