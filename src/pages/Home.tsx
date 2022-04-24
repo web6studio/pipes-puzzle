@@ -4,6 +4,7 @@ import { useWebsocket } from '../api/socket';
 import { convertData } from '../utils';
 import { COMMANDS } from '../constants';
 import { PipesWrapper } from '../components/PipesWrapper';
+import { HomePage } from '../components/styles';
 
 const Home: FunctionComponent = () => {
   const [pipes, setPipes] = useState<Pipes>([]);
@@ -55,20 +56,22 @@ const Home: FunctionComponent = () => {
   };
 
   return (
-    <div>
-      <h1>Pipes Puzzle</h1>
-      <button onClick={handleStartClick}>Start New Game</button>
-      <select name='level' value={level} onChange={handleLevelChange}>
-        <option value={1}>Level 1</option>
-        <option value={2}>Level 2</option>
-        <option value={3}>Level 3</option>
-        <option value={4}>Level 4</option>
-        <option value={5}>Level 5</option>
-        <option value={6}>Level 6</option>
-      </select>
-      <button onClick={handleVerifyClick}>Verify</button>
-      <PipesWrapper onRotate={handleRotate} data={pipes} />
-    </div>
+    <HomePage>
+      <div>
+        <h1>Pipes Puzzle</h1>
+        <button onClick={handleStartClick}>Start New Game</button>
+        <select name='level' value={level} onChange={handleLevelChange}>
+          <option value={1}>Level 1</option>
+          <option value={2}>Level 2</option>
+          <option value={3}>Level 3</option>
+          <option value={4}>Level 4</option>
+          <option value={5}>Level 5</option>
+          <option value={6}>Level 6</option>
+        </select>
+        <button onClick={handleVerifyClick}>Verify</button>
+        <PipesWrapper onRotate={handleRotate} data={pipes} />
+      </div>
+    </HomePage>
   );
 }
 

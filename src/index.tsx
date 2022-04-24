@@ -5,8 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // import configureStore from './store/configureStore';
 import App from './App';
-
-import './styles.css';
+import { GlobalStyles } from './components/styles'
 
 // const store = configureStore();
 const container = document.getElementById('root')!;
@@ -15,6 +14,7 @@ const root = ReactDOM.createRoot(container);
 root.render(
   // <Provider store={store}>
   <BrowserRouter>
+    <GlobalStyles />
     <App />
   </BrowserRouter>,
   // </Provider>
