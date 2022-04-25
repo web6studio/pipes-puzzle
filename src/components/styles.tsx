@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -21,6 +21,11 @@ export const GlobalStyles = createGlobalStyle`
   button {
     box-shadow: none !important;
   }
+
+  .dropdown-item:active {
+    background-color: #e9ecef;
+    color: #212529;
+  }
 `
 
 export const Brand = styled(Link)`
@@ -30,6 +35,7 @@ export const Brand = styled(Link)`
   text-decoration: none;
   padding: 5px 0;
   margin-right: 16px;
+  user-select: none;
 
   &:hover {
     color: #fff;
@@ -42,9 +48,11 @@ export const MenuItem = styled(Link)`
   color: #ffffff8c;
   text-decoration: none;
   padding: 8px;
+  user-select: none;
 
   &:hover, &:focus {
     color: #ffffffd4;
+    transition: color .15s ease-in-out;
   }
 `
 
@@ -76,13 +84,16 @@ export const ButtonWrapper = styled.div`
 `
 
 export const Pipes = styled.div`
-  background: #0c5ed50f;
-  color: #0d5ed5;
+  background: #f4f4f4;
+  color: #485159;
   font-size: ${(props: PipeProps) => props.fontSize}px;
   font-family: monospace;
   font-weight: bold;
   line-height: 1;
   padding: 20px;
+  max-width: calc(100vw - 24px);
+  overflow: auto;
+  white-space: nowrap;
 `
 
 export const Pipe = styled.div`
@@ -91,11 +102,18 @@ export const Pipe = styled.div`
   display: inline-block;
 
   &:hover {
-    background: #0c5ed51a;
+    background: #21252914;
+    transition: background-color .15s ease-in-out;
   }
 `
 
 export const ModalText = styled.div`
   padding: 20px;
   text-align: center;
+`
+
+export const SpinnerContainer = styled.div`
+  height: 200px;
+  display: flex;
+  align-items: center;
 `

@@ -9,3 +9,19 @@ type Rotate = (x: number, y: number) => void;
 type PipeProps = {
   fontSize: number,
 };
+
+type SetLevelAction = {
+  type: typeof SET_LEVEL,
+  level: string,
+};
+
+type GetMapRequestAction = {
+  type: typeof GET_MAP_REQUEST,
+};
+
+type GetMapSuccessAction = {
+  type: typeof GET_MAP_SUCCESS,
+  map: Pipes,
+};
+
+type Action = SetLevelAction | GetMapRequestAction | GetMapSuccessAction;

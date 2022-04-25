@@ -28,7 +28,7 @@ export const VerifyModal: FunctionComponent<Props> = (props) => {
             </ModalText>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='primary' onClick={handleCopyCode}>Copy password code</Button>
+            <Button variant='secondary' onClick={handleCopyCode}>Copy password code</Button>
           </Modal.Footer>
         </>
       ) : (

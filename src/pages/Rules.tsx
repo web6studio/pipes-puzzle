@@ -14,7 +14,7 @@ const Rules: FunctionComponent = () => {
         Hover and click an element to rotate it.</p>
       <br />
       <Row>
-        <Col xs={5}>
+        <Col sm={5}>
           <p>For example, given the map of:</p>
           <p><Image src='map.png' alt='pipes puzzle map example' /></p>
           </Col>

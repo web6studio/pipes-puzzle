@@ -5,7 +5,7 @@ import { Brand, MenuItem } from './styles';
 
 export const Navigation: FunctionComponent = () => {
   return (
-    <Navbar bg='primary' variant='dark'>
+    <Navbar bg='dark' variant='dark'>
       <Container>
         <Brand to='/'>Pipes Puzzle</Brand>
         <Nav className='me-auto'>

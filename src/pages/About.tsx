@@ -8,7 +8,7 @@ const About: FunctionComponent = () => {
     <Page>
       <Heading>About Author</Heading>
       <Row>
-        <Col xs={4}>
+        <Col sm={4}>
           <p><Image roundedCircle src='author.png' alt='Nikita Kolos' /></p>
         </Col>
         <Col>
