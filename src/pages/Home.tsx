@@ -1,24 +1,29 @@
-import { FunctionComponent, useState, useCallback, useEffect, ChangeEvent } from 'react';
+import { FunctionComponent, useState, useCallback, useEffect } from 'react';
+import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
 
-import { useWebsocket } from '../api/socket';
-import { convertData } from '../utils';
-import { COMMANDS } from '../constants';
 import { PipesWrapper } from '../components/PipesWrapper';
-import { HomePage } from '../components/styles';
+import { VerifyModal } from '../components/VerifyModal';
+import { HomePage, Heading, ButtonWrapper } from '../components/styles';
+import { useWebsocket } from '../api/socket';
+import { COMMANDS } from '../constants';
+import { convertData } from '../utils';
 
 const Home: FunctionComponent = () => {
   const [pipes, setPipes] = useState<Pipes>([]);
   const [level, setLevel] = useState('1');
+  const [code, setCode] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const { ws } = useWebsocket();
 
-  const getData = useCallback((data: string) => {
+  const processData = useCallback((data: string) => {
     if (data.search(`${COMMANDS.MAP}:`) !== -1) {
       setPipes(convertData(data.split(`${COMMANDS.MAP}:\n`)[1]));
     }
 
     if (data.search(`${COMMANDS.VERIFY}:`) !== -1) {
-      const result = data.split(`${COMMANDS.VERIFY}: `)[1];
-      alert(result);
+      const code = data.split('Password: ')[1];
+      setCode(code);
+      setShowModal(true);
     }
   }, []);
 
@@ -33,17 +38,21 @@ const Home: FunctionComponent = () => {
     };
 
     ws.onmessage = e => {
-      getData(e.data)
+      processData(e.data);
     };
 
     return () => {
       ws.close();
     };
     // eslint-disable-next-line
-  }, [ws, getData]);
+  }, [ws, processData]);
 
-  const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setLevel(e.target.value);
+  const handleLevelChange = (level: string | null) => {
+    if (level) {
+      setLevel(level);
+      ws.send(`${COMMANDS.NEW} ${level}`);
+      ws.send(COMMANDS.MAP);
+    }
   };
 
   const handleVerifyClick = () => {
@@ -55,22 +64,29 @@ const Home: FunctionComponent = () => {
     ws.send(COMMANDS.MAP);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  }
+
   return (
     <HomePage>
       <div>
-        <h1>Pipes Puzzle</h1>
-        <button onClick={handleStartClick}>Start New Game</button>
-        <select name='level' value={level} onChange={handleLevelChange}>
-          <option value={1}>Level 1</option>
-          <option value={2}>Level 2</option>
-          <option value={3}>Level 3</option>
-          <option value={4}>Level 4</option>
-          <option value={5}>Level 5</option>
-          <option value={6}>Level 6</option>
-        </select>
-        <button onClick={handleVerifyClick}>Verify</button>
-        <PipesWrapper onRotate={handleRotate} data={pipes} />
+        <Heading>Pipes Puzzle</Heading>
+        <ButtonWrapper>
+          <Button onClick={handleStartClick} variant='outline-primary'>New Game</Button>{' '}
+          <DropdownButton onSelect={handleLevelChange} title={`Level ${level}`} variant='outline-primary'>
+            <Dropdown.Item eventKey='1'>Level 1</Dropdown.Item>
+            <Dropdown.Item eventKey='2'>Level 2</Dropdown.Item>
+            <Dropdown.Item eventKey='3'>Level 3</Dropdown.Item>
+            <Dropdown.Item eventKey='4'>Level 4</Dropdown.Item>
+            <Dropdown.Item disabled eventKey='5'>Level 5</Dropdown.Item>
+            <Dropdown.Item disabled eventKey='6'>Level 6</Dropdown.Item>
+          </DropdownButton>
+          <Button onClick={handleVerifyClick} variant='outline-primary'>Verify</Button>{' '}
+        </ButtonWrapper>
+        <PipesWrapper onRotate={handleRotate} data={pipes} level={level} />
       </div>
+      <VerifyModal onClose={handleClose} show={showModal} code={code} />
     </HomePage>
   );
 }
