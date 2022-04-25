@@ -5,9 +5,9 @@ import { ModalText } from './styles';
 
 type Props = {
   onClose: () => void,
+  code: Code,
   show: boolean,
-  code: string | null,
-}
+};
 
 export const VerifyModal: FunctionComponent<Props> = (props) => {
   const { show, code, onClose } = props;

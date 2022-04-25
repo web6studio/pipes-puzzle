@@ -11,7 +11,7 @@ import { convertData } from '../utils';
 const Home: FunctionComponent = () => {
   const [pipes, setPipes] = useState<Pipes>([]);
   const [level, setLevel] = useState('1');
-  const [code, setCode] = useState<string | null>(null);
+  const [code, setCode] = useState<Code>(null);
   const [showModal, setShowModal] = useState(false);
   const { ws } = useWebsocket();
 

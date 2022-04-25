@@ -1,15 +1,17 @@
 import { FunctionComponent } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 
+import { Brand, MenuItem } from './styles';
+
 export const Navigation: FunctionComponent = () => {
   return (
     <Navbar bg='primary' variant='dark'>
       <Container>
-        <Navbar.Brand href='/'>Pipes Puzzle</Navbar.Brand>
+        <Brand to='/'>Pipes Puzzle</Brand>
         <Nav className='me-auto'>
-          <Nav.Link href='/'>Home</Nav.Link>
-          <Nav.Link href='/rules'>Rules</Nav.Link>
-          <Nav.Link href='/about'>About Author</Nav.Link>
+          <MenuItem to='/'>Home</MenuItem>
+          <MenuItem to='rules'>Rules</MenuItem>
+          <MenuItem to='about'>About Author</MenuItem>
         </Nav>
       </Container>
     </Navbar>

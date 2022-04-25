@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -19,6 +20,31 @@ export const GlobalStyles = createGlobalStyle`
 
   button {
     box-shadow: none !important;
+  }
+`
+
+export const Brand = styled(Link)`
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 0;
+  margin-right: 16px;
+
+  &:hover {
+    color: #fff;
+  }
+`
+
+export const MenuItem = styled(Link)`
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff8c;
+  text-decoration: none;
+  padding: 8px;
+
+  &:hover, &:focus {
+    color: #ffffffd4;
   }
 `
 

@@ -1,3 +1,5 @@
+type Code = string | null;
+
 type Pipe = Array<string>;
 
 type Pipes = Array<Pipe>;
