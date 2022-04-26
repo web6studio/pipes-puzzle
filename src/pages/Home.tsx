@@ -42,10 +42,12 @@ const Home: FunctionComponent<Props> = (props: Props) => {
   };
 
   useEffect(() => {
-    if (!map.length) {
-      ws.onopen = () => {
-        handleStartClick();
-      };
+    if (!map.length && ws.readyState === WebSocket.OPEN) {
+      handleStartClick();
+    };
+
+    ws.onopen = () => {
+      handleStartClick();
     };
 
     ws.onmessage = e => {

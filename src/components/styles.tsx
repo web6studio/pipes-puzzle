@@ -91,7 +91,7 @@ export const Pipes = styled.div`
   font-weight: bold;
   line-height: 1;
   padding: 20px;
-  max-width: calc(100vw - 24px);
+  max-width: calc(100vw - 1.5rem);
   overflow: auto;
   white-space: nowrap;
 `

@@ -26,7 +26,7 @@ JustWarmingUp
 
 ## App Limitations 
 
-Level 5 and 6 is not available. The application uses basic HTML instead of Canvas to render elements, so there are performance issues when rendering large maps. Also may be different nuances with mobile version and old browsers (not tested). The game session is interrupted when the page is reloaded.
+Level 5 and 6 is not available. The application uses basic HTML instead of Canvas to render elements, so there are performance issues when rendering large maps. The game session is interrupted when the page is reloaded.
 
 ## Design
 
@@ -39,4 +39,4 @@ TypeScript + React + Redux + Bootstrap + React Scripts
 
 ## Remark
 
-Web socket logic could be taken out of the Home page component (for example into a saga). But in this simple situation, I didn't see that it makes sense.
+Web socket logic could be taken out of the Home page component (for example into a middleware). But in this simple situation, I didn't see that it makes sense.
