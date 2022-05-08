@@ -1,3 +1,9 @@
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.png';
+declare module '*.svg';
+declare module '*.gif';
+
 type Code = string | null;
 
 type Pipe = Array<string>;

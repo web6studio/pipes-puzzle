@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import { Image, Row, Col } from 'react-bootstrap';
 
 import { Page, Heading } from '../components/styles';
+import AuthorImage from '../assets/author.png';
 
 const About: FunctionComponent = () => {
   return (
@@ -9,7 +10,7 @@ const About: FunctionComponent = () => {
       <Heading>About Author</Heading>
       <Row>
         <Col sm={4}>
-          <p><Image roundedCircle src='author.png' alt='Nikita Kolos' /></p>
+          <p><Image roundedCircle src={AuthorImage} alt='Nikita Kolos' /></p>
         </Col>
         <Col>
           <p>My name is Nick. My experience of programming is about seven years. 
