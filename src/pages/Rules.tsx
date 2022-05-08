@@ -2,7 +2,8 @@ import { FunctionComponent } from 'react';
 import { Image, Row, Col } from 'react-bootstrap';
 
 import { Page, Heading } from '../components/styles';
-
+import MapImage from '../assets/map.png';
+import MapCompletedImage from '../assets/map_completed.png';
 
 const Rules: FunctionComponent = () => {
   return (
@@ -16,11 +17,11 @@ const Rules: FunctionComponent = () => {
       <Row>
         <Col sm={5}>
           <p>For example, given the map of:</p>
-          <p><Image src='map.png' alt='pipes puzzle map example' /></p>
+          <p><Image src={MapImage} alt='pipes puzzle map example' /></p>
           </Col>
         <Col md={{ span: 5, offset: 1 }}>
           <p>... you should rotate it to:</p>
-          <p><Image src='map_completed.png' alt='complited puzzle' /></p>
+          <p><Image src={MapCompletedImage} alt='complited puzzle' /></p>
         </Col>
       </Row>
     </Page>

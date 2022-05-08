@@ -24,11 +24,11 @@ const Home: FunctionComponent<Props> = (props: Props) => {
   const { ws } = useWebsocket();
 
   const processData = useCallback((data: string) => {
-    if (data.search(`${COMMANDS.MAP}:`) !== -1) {
+    if (data.includes(`${COMMANDS.MAP}:`)) {
       onGetMap(convertData(data.split(`${COMMANDS.MAP}:\n`)[1]));
     };
 
-    if (data.search(`${COMMANDS.VERIFY}:`) !== -1) {
+    if (data.includes(`${COMMANDS.VERIFY}:`)) {
       const code = data.split('Password: ')[1];
       setCode(code);
       setShowModal(true);
@@ -53,8 +53,7 @@ const Home: FunctionComponent<Props> = (props: Props) => {
     ws.onmessage = e => {
       processData(e.data);
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [ws]);
 
   const handleLevelChange = (level: string | null) => {
     if (level) {
