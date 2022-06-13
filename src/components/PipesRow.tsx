@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import shortid from 'shortid';
 
 import { Pipe } from './styles';
 
@@ -17,7 +18,7 @@ export const PipesRow: FunctionComponent<Props> = (props) => {
   return (
     <div>
       {data?.map((value, index) => (
-        <Pipe onClick={() => handleClick(index)} key={index}>{value}</Pipe>
+        <Pipe onClick={() => handleClick(index)} key={`item_${shortid.generate()}`}>{value}</Pipe>
       ))}
     </div>
   );

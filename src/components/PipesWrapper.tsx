@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import shortid from 'shortid';
 
 import { PipesRow } from './PipesRow';
 import { Pipes } from './styles';
@@ -26,9 +27,9 @@ export const PipesWrapper: FunctionComponent<Props> = (props) => {
 
   return (
     <Pipes fontSize={getFontSize()}>
-      {data?.map((row, index) => (
-        <PipesRow onRotate={onRotate} data={row}  row={index} key={index} />
-      ))}
+      {data?.map((row, index) =>
+        <PipesRow onRotate={onRotate} data={row} row={index} key={`row_${shortid.generate()}`} />
+      )}
     </Pipes>
   );
 };

@@ -96,8 +96,6 @@ const Home: FunctionComponent<Props> = (props: Props) => {
                   <Dropdown.Item eventKey='2'>Level 2</Dropdown.Item>
                   <Dropdown.Item eventKey='3'>Level 3</Dropdown.Item>
                   <Dropdown.Item eventKey='4'>Level 4</Dropdown.Item>
-                  <Dropdown.Item disabled eventKey='5'>Level 5</Dropdown.Item>
-                  <Dropdown.Item disabled eventKey='6'>Level 6</Dropdown.Item>
                 </DropdownButton>
                 <Button onClick={handleVerifyClick} variant='secondary'>Verify</Button>{' '}
               </ButtonWrapper>

@@ -18,23 +18,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-## Level Password Example
-
-JustWarmingUp
-
-## App Limitations 
-
-Level 5 and 6 is not available. The application uses basic HTML instead of Canvas to render elements, so there are performance issues when rendering large maps. The game session is interrupted when the page is reloaded.
-
-## Design
-
-The design is based on standard Bootstrap components and custom Styled Components.
-
-
 ## Technologies
 
 TypeScript + React + Redux + Bootstrap + Webpack
-
-## Remark
-
-Web socket logic could be taken out of the Home page component (for example into a middleware). But in this simple situation, I didn't see that it makes sense.
